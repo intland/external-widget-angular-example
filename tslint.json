@@ -4,6 +4,7 @@
     "codelyzer"
   ],
   "rules": {
+    "no-bitwise": false,
     "align": {
       "options": [
         "parameters",
