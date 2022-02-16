@@ -1,17 +1,19 @@
 <div>
-  <div>This is a custom Angular application</div>
-  <hr />
-  <div class="form" *ngIf="item">
-    <form>
-      <label>
-        <span>Item description</span>
-        <textarea name="description" [(ngModel)]="item.description">
-        </textarea>
-        <button (click)="saveForm()">Save</button>
-      </label>
-    </form>
-    <div *ngIf="loading" class="loading">
-      Loading...
+    <p>This is a custom Angular application</p>
+    <div class="token" *ngIf="token | async else noToken">Token received</div>
+    <ng-template #noToken>Waiting for token...</ng-template>
+    <p *ngIf="tracker | async">Number of tracker items: {{ (tracker | async)?.total }}</p>
+    <div class="form" *ngIf="item">
+        <hr/>
+        <form>
+            <label>
+                <span>Item description:</span>
+                <textarea name="description" [(ngModel)]="item.description"></textarea>
+            </label>
+            <button (click)="saveForm()">Save</button>
+        </form>
+        <div *ngIf="loading" class="loading">
+            Loading...
+        </div>
     </div>
-  </div>
 </div>

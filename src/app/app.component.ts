@@ -1,10 +1,10 @@
 /// <reference types="resize-observer-browser" />
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {WidgetApi} from 'cb-widget-api';
-import {fromEventPattern, merge} from 'rxjs';
+import {fromEventPattern, merge, Observable} from 'rxjs';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
-import {Api, TrackerItem} from '../../gen/codebeamer';
+import {Api, TrackerItem, TrackerItemReferenceSearchResult} from '../../gen/codebeamer';
 
 @Component({
     selector: 'app-root',
@@ -14,23 +14,35 @@ import {Api, TrackerItem} from '../../gen/codebeamer';
 export class AppComponent implements OnInit {
     public item: TrackerItem | null = null;
     public loading = true;
+    public readonly token: Promise<string>;
+    public readonly tracker: Observable<TrackerItemReferenceSearchResult>;
+
+    private readonly config: Promise<any>;
+    private readonly baseURL: Promise<string>;
     private readonly api: WidgetApi;
     private readonly observer: ResizeObserver;
-    private readonly token: Promise<string>;
-    private readonly swagger: Api<void>;
+    private readonly swagger: Promise<Api<void>>;
 
     constructor(private cd: ChangeDetectorRef) {
-        this.api = new WidgetApi('widgetId', 'http://localhost:8080');
+        this.api = new WidgetApi(window, 'widgetId', 'http://localhost:8080');
         this.token = this.api.authenticate().then(({token}) => token);
-        this.swagger = new Api({
+        this.baseURL = this.api.getBaseURL().then(({baseURL}) => baseURL);
+        this.config = this.api.getConfig().then(response => response.config && JSON.parse(response.config));
+        this.swagger = this.baseURL.then(baseUrl => new Api({
+            baseUrl,
             customFetch: (input, init = {}) => this.token.then(token => fetch(input, {
                 ...init,
                 headers: {...init.headers, authorization: 'Bearer ' + token}
             }))
-        });
+        }));
         this.observer = new ResizeObserver(([entry]) => {
             this.api.resize(entry.contentRect.height + 10).then(/* ignored */);
         });
+        this.tracker = fromPromise(this.config)
+            .pipe(filter(x => x))
+            .pipe(map(x => x.tracker))
+            .pipe(switchMap(tracker => this.swagger.then(api => api.v3.getItemsByTracker(tracker))))
+            .pipe(map(x => x.data));
     }
 
     ngOnInit(): void {
@@ -46,11 +58,13 @@ export class AppComponent implements OnInit {
                 (_, unsubscribe) => unsubscribe()
             )
         )
+            .pipe(filter(x => !!x))
+            .pipe(map(x => x as string))
             .pipe(tap(() => {
                 this.loading = true;
                 this.cd.detectChanges();
             }))
-            .pipe(switchMap(item => this.swagger.v3.getTrackerItem(~~item)))
+            .pipe(switchMap(item => this.swagger.then(api => api.v3.getTrackerItem(~~item))))
             .pipe(map(response => response.data))
             .subscribe(result => {
                 this.loading = false;
@@ -66,8 +80,9 @@ export class AppComponent implements OnInit {
         if (!this.item || !this.item.id) {
             throw new Error('existing item must be present');
         }
+        const item = this.item;
         const itemId = this.item.id;
-        this.swagger.v3.updateTrackerItem(itemId, this.item).then(() => {
+        this.swagger.then(api => api.v3.updateTrackerItem(itemId, item)).then(() => {
             this.loading = false;
             this.api.reloadItem({itemId: itemId.toString()}).then(/* ignored */);
             this.cd.detectChanges();
