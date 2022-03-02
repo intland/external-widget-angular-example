@@ -1,0 +1,24 @@
+{
+    "documentViewWidgets": [
+        {
+            "enabled": "${type == 'Task'}",
+            "externalWidgetConfig": {
+                "id": "test-widget",
+                "name": "Test Widget",
+                "viewUrl": "/",
+                "iconUrl": "/assets/cog.png"
+            }
+        }
+    ],
+    "itemDetailsWidgets": [
+        {
+            "enabled": "${type == 'Task'}",
+            "externalWidgetConfig": {
+                "id": "test-widget",
+                "name": "Test Widget",
+                "viewUrl": "/",
+                "iconUrl": "/assets/cog.png"
+            }
+        }
+    ]
+}

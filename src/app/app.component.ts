@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     private readonly swagger: Promise<Api<void>>;
 
     constructor(private cd: ChangeDetectorRef) {
-        this.api = new WidgetApi(window, 'widgetId', 'http://localhost:8080');
+        this.api = new WidgetApi(window, 'widgetId', '*');
         this.token = this.api.authenticate().then(({token}) => token);
         this.baseURL = this.api.getBaseURL().then(({baseURL}) => baseURL);
         this.config = this.api.getConfig().then(response => response.config && JSON.parse(response.config));
@@ -64,7 +64,9 @@ export class AppComponent implements OnInit {
                 this.loading = true;
                 this.cd.detectChanges();
             }))
-            .pipe(switchMap(item => this.swagger.then(api => api.v3.getTrackerItem(~~item))))
+            .pipe(switchMap(item => this.swagger.then(api =>
+                api.v3.getTrackerItem(~~item)
+                    .catch(() => ({data: {}})))))
             .pipe(map(response => response.data))
             .subscribe(result => {
                 this.loading = false;
