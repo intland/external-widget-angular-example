@@ -1,0 +1,8 @@
+{
+  admin off
+}
+
+http://localhost:4200, {$SERVER_HOST} {
+    try_files {path} /index.html
+    file_server
+}
