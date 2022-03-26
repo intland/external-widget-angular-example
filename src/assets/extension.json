@@ -6,7 +6,7 @@
                 "id": "test-widget",
                 "name": "Test Widget",
                 "viewUrl": "/",
-                "iconUrl": "/assets/cog.png"
+                "iconUrl": "/assets/chart.png"
             }
         }
     ],
@@ -17,7 +17,44 @@
                 "id": "test-widget",
                 "name": "Test Widget",
                 "viewUrl": "/",
-                "iconUrl": "/assets/cog.png"
+                "iconUrl": "/assets/chart.png"
+            }
+        }
+    ],
+    "dashboardWidgets": [
+        {
+            "enabled": "${(name eq null) or (name eq 'Intland Software\\'s Default Template')}",
+            "externalWidgetConfig": {
+                "id": "test-dashboard-widget",
+                "name": "Test Dashboard Widget",
+                "shortDescription" : "test external dashboard widget",
+                "category" : "other",
+                "knowledgeBaseUrl" : "http://localhost:4200/knowledgeBase",
+                "viewUrl": "/",
+                "iconUrl": "/assets/cog.png",
+                "attributes": {
+                    "someText": {
+                        "typeName": "string",
+                        "fieldLabel": "Some Text",
+                        "required": true,
+                        "validationRequired": false,
+                        "value": "aaa"
+                    },
+                    "trackerId": {
+                        "typeName": "tracker",
+                        "fieldLabel": "Tracker Custom Label",
+                        "required": true,
+                        "validationRequired": false,
+                        "value": []
+                    },
+                    "trackerId2": {
+                        "typeName": "tracker",
+                        "fieldLabel": "Tracker Custom Label 2",
+                        "required": true,
+                        "validationRequired": false,
+                        "value": []
+                    }
+                }
             }
         }
     ]

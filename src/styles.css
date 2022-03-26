@@ -7,9 +7,14 @@
 body {
     font-family: Arial, sans-serif;
     font-size: 13px;
+    height: 100%;
 }
 
 textarea {
     font-family: Arial, sans-serif;
     font-size: 13px;
+}
+
+.content {
+    height: 100%;
 }

@@ -2,7 +2,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {WidgetApi} from 'cb-widget-api';
 import {fromEventPattern, merge, Observable} from 'rxjs';
-import {filter, map, switchMap, tap} from 'rxjs/operators';
+import {filter, map, share, switchMap, tap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
 import {Api, TrackerItem, TrackerItemReferenceSearchResult} from '../../gen/codebeamer';
 
@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
     public loading = true;
     public readonly token: Promise<string>;
     public readonly tracker: Observable<TrackerItemReferenceSearchResult>;
+    public readonly config: Promise<any>;
 
-    private readonly config: Promise<any>;
     private readonly baseURL: Promise<string>;
     private readonly api: WidgetApi;
     private readonly observer: ResizeObserver;
@@ -40,9 +40,10 @@ export class AppComponent implements OnInit {
         });
         this.tracker = fromPromise(this.config)
             .pipe(filter(x => x))
-            .pipe(map(x => x.tracker))
+            .pipe(map(x => x.trackerId[0]))
             .pipe(switchMap(tracker => this.swagger.then(api => api.v3.getItemsByTracker(tracker))))
-            .pipe(map(x => x.data));
+            .pipe(map(x => x.data))
+            .pipe(share());
     }
 
     ngOnInit(): void {

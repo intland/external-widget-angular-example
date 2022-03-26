@@ -14,6 +14,14 @@
 11. run `export NODE_OPTIONS=--openssl-legacy-provider` -> this is just a workaround
 12. run `$ npx ng serve` to run the application in development mode
 
+##Configuring in codebeamer
+Go to SystemAdmin -> Application Configuration
+```
+"externalWidgetExtensions" : {
+    "uri" : "http://localhost:4200/assets/extension.json"
+},
+```
+
 ##Deleting cache in codebeamer
 If you would like to delete the cached widget config in codebeamer just hit this URL:
 `http://localhost:8080/cb/hc/caches/externalWidgetExtensionConfigCache/clear.spr`
