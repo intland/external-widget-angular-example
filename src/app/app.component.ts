@@ -1,6 +1,6 @@
 /// <reference types="resize-observer-browser" />
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {WidgetApi} from 'cb-widget-api';
+import {WidgetApi} from '@intland/cb-widget-api';
 import {fromEventPattern, merge, Observable} from 'rxjs';
 import {filter, map, share, switchMap, tap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';

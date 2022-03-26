@@ -2,7 +2,13 @@
   admin off
 }
 
-http://localhost:4200, {$SERVER_HOST} {
+http://:4200 {
     try_files {path} /index.html
+    file_server
+}
+
+https:// {
+	tls /certificates/0.crt /certificates/0.unencrypted.key
+	try_files {path} /index.html
     file_server
 }
