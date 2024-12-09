@@ -1,18 +1,19 @@
 
 #Steps to run
 
-1. Go to `{codeBeamerRepo}/zk/cb/cb-external-widget-api/packages/cb-widget-api`
-2. Check the node version `$ node --version`
-3. Set the node version to the same in `/external-widget-angular-example` with `nvm use {version}`
-4. Go back to `{codeBeamerRepo}/zk/cb/cb-external-widget-api/packages/cb-widget-api`
-5. run `$ npm install`
-6. run `$ npx webpack build`
-7. run `$ npm link`
-8. Go to `/external-widget-angular-example`
-9. run `$ npm link cb-widget-api`
-10. run `$ npm install` 
-11. run `export NODE_OPTIONS=--openssl-legacy-provider` -> this is just a workaround
-12. run `$ npx ng serve` to run the application in development mode
+1. Run `npm i @intland/cb-widget-api` to download https://www.npmjs.com/package/@intland/cb-widget-api
+2. Go to `node_modules/@intland/cb-external-widget-api/packages/cb-widget-api`
+3. Check the node version `$ node --version`
+4. Set the node version to the same in `/external-widget-angular-example` with `nvm use {version}`
+5. Go back to `node_modules/@intland/cb-external-widget-api/packages/cb-widget-api`
+6. Run `$ npm install`
+7. Run `$ npx webpack build`
+8. Run `$ npm link`
+9. Go to `/external-widget-angular-example`
+10. Run `$ npm link cb-widget-api`
+11. Run `$ npm install` 
+12. Run `export NODE_OPTIONS=--openssl-legacy-provider` -> this is just a workaround
+13. Run `$ npx ng serve` to run the application in development mode
 
 ##Configuring in codebeamer
 Go to SystemAdmin -> Application Configuration
