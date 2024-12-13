@@ -1,19 +1,12 @@
 
 #Steps to run
 
-1. Run `npm i @intland/cb-widget-api` to download https://www.npmjs.com/package/@intland/cb-widget-api
-2. Go to `node_modules/@intland/cb-external-widget-api/packages/cb-widget-api`
-3. Check the node version `$ node --version`
-4. Set the node version to the same in `/external-widget-angular-example` with `nvm use {version}`
-5. Go back to `node_modules/@intland/cb-external-widget-api/packages/cb-widget-api`
-6. Run `$ npm install`
-7. Run `$ npx webpack build`
-8. Run `$ npm link`
-9. Go to `/external-widget-angular-example`
-10. Run `$ npm link cb-widget-api`
-11. Run `$ npm install` 
-12. Run `export NODE_OPTIONS=--openssl-legacy-provider` -> this is just a workaround
-13. Run `$ npx ng serve` to run the application in development mode
+1. Clone this repository.
+2. Use Node.js `v16.20.2`.
+3. Navigate to the `external-widget-angular-example-master` folder and run `npm install` in a Terminal or Command Prompt window.
+4. Run `export NODE_OPTIONS=--openssl-legacy-provider` (Linux OS) or `set NODE_OPTIONS=--openssl-legacy-provider` (Windows OS) -> this is just a workaround.
+5. Run `npx ng serve` to run the application in development mode.
+6. You can access the app at http://localhost:4200/
 
 ##Configuring in codebeamer
 Go to SystemAdmin -> Application Configuration
