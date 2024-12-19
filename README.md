@@ -1,13 +1,16 @@
 # Steps to run
 
-1. Make sure your OS uses Node.js `v16`. These steps are tested with  Node.js `v16.20.2`.
-2. Clone or download this repository.
+1. Make sure your OS uses Node.js `v16`. These steps are tested with Node.js `v16.20.2`.
+2. Clone or download this repository:
+    - If you clone this repository, navigate to the `external-widget-angular-example` folder.
     - If you download this repository, unzip it and navigate to the `external-widget-angular-example-master` folder.
-	- If you clone this repository, navigate to the `external-widget-angular-example` folder.
 5. Open a Terminal or Command Prompt window and run `npm install`.
-4. Run `export NODE_OPTIONS=--openssl-legacy-provider` (Linux OS) or `set NODE_OPTIONS=--openssl-legacy-provider` (Windows OS) -> this is just a workaround.
-5. Run `npx ng serve` to run the application in development mode.
-6. You can access the app at http://localhost:4200/
+4. Set the `NODE_OPTIONS` environment variable:
+   - For Linux OS, run: `export NODE_OPTIONS=--openssl-legacy-provider`
+   - For Windows OS, run: `set NODE_OPTIONS=--openssl-legacy-provider`
+       - This is a workaround for compatibility with OpenSSL.
+6. Run `npx ng serve` to run the application in development mode.
+7. You can access the app at http://localhost:4200/
 
 # Configuring in codebeamer
 Go to SystemAdmin -> Application Configuration
