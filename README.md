@@ -1,14 +1,15 @@
+# Steps to run
 
-#Steps to run
-
-1. Clone this repository.
-2. Use Node.js `v16.20.2`.
-3. Navigate to the `external-widget-angular-example-master` folder and run `npm install` in a Terminal or Command Prompt window.
+1. Make sure your OS uses Node.js `v16.20.2`.
+2. Clone or download this repository.
+3. If you downloaded this repository, unzip it and navigate to the `external-widget-angular-example-master` folder.
+4. If you cloned this repository, navigate to the `external-widget-angular-example` folder.
+5. Open a Terminal or Command Prompt window and run `npm install`.
 4. Run `export NODE_OPTIONS=--openssl-legacy-provider` (Linux OS) or `set NODE_OPTIONS=--openssl-legacy-provider` (Windows OS) -> this is just a workaround.
 5. Run `npx ng serve` to run the application in development mode.
 6. You can access the app at http://localhost:4200/
 
-##Configuring in codebeamer
+# Configuring in codebeamer
 Go to SystemAdmin -> Application Configuration
 ```
 "externalWidgetExtensions" : {
@@ -16,7 +17,7 @@ Go to SystemAdmin -> Application Configuration
 },
 ```
 
-##Deleting cache in codebeamer
+## Deleting cache in codebeamer
 If you would like to delete the cached widget config in codebeamer just hit this URL:
 `http://localhost:8080/cb/hc/caches/externalWidgetExtensionConfigCache/clear.spr`
 
