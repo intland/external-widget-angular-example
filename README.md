@@ -2,8 +2,8 @@
 
 1. Make sure your OS uses Node.js `v16.20.2`.
 2. Clone or download this repository.
-3. If you downloaded this repository, unzip it and navigate to the `external-widget-angular-example-master` folder.
-4. If you cloned this repository, navigate to the `external-widget-angular-example` folder.
+    - If you download this repository, unzip it and navigate to the `external-widget-angular-example-master` folder.
+	- If you clone this repository, navigate to the `external-widget-angular-example` folder.
 5. Open a Terminal or Command Prompt window and run `npm install`.
 4. Run `export NODE_OPTIONS=--openssl-legacy-provider` (Linux OS) or `set NODE_OPTIONS=--openssl-legacy-provider` (Windows OS) -> this is just a workaround.
 5. Run `npx ng serve` to run the application in development mode.
