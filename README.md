@@ -1,6 +1,6 @@
 # Steps to run
 
-1. Make sure your OS uses Node.js `v16.20.2`.
+1. Make sure your OS uses Node.js `v16`. These steps are tested with  Node.js `v16.20.2`.
 2. Clone or download this repository.
     - If you download this repository, unzip it and navigate to the `external-widget-angular-example-master` folder.
 	- If you clone this repository, navigate to the `external-widget-angular-example` folder.
